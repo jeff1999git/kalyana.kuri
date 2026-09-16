@@ -84,17 +84,6 @@ export function Work() {
       id="work"
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
     >
-      {/* static background */}
-      <div
-        aria-hidden
-        className="absolute inset-0 -z-10"
-        style={{
-          backgroundImage: "url('/optimized/2-orig.webp')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      />
-
       <Fireflies />
 
       <div
