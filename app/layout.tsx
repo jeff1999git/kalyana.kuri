@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { CheersCursor } from "@/components/animations/CheersCursor";
+import { ClickBurst } from "@/components/animations/ClickBurst";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -61,6 +63,8 @@ export default function RootLayout({
         className="antialiased"
       >
         {children}
+        <CheersCursor />
+        <ClickBurst />
       </body>
     </html>
   );

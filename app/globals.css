@@ -88,3 +88,17 @@ body {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
+
+/* ── Custom cursor ──────────────────────────────────────────── */
+/* .has-custom-cursor is added by <CheersCursor /> once it has mounted on a
+   fine-pointer device, so the native cursor only disappears when the custom
+   one is actually being drawn. Text fields keep the native I-beam. */
+@media (pointer: fine) {
+  html.has-custom-cursor,
+  html.has-custom-cursor * {
+    cursor: none !important;
+  }
+  html.has-custom-cursor :is(input, textarea, select, [contenteditable="true"]) {
+    cursor: auto !important;
+  }
+}
