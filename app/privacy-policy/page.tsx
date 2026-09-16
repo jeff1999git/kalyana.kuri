@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { StarField } from "@/components/animations/StarField";
 
-export const metadata = { title: "Privacy Policy — WebitAi" };
+export const metadata = { title: "Privacy Policy — Kalyana.kuri" };
 
 export default function PrivacyPolicyPage() {
   return (
@@ -20,9 +20,9 @@ export default function PrivacyPolicyPage() {
             <h2 className="text-base font-semibold text-foreground mb-2">1. Information We Collect</h2>
             <p>
               We collect information you provide directly to us, such as your name, email
-              address, and WhatsApp number when you use our contact form. We also collect
-              usage data automatically when you interact with our website, including IP
-              address, browser type, pages visited, and time spent.
+              address, and WhatsApp number when you use our contact form or reach out to us
+              on WhatsApp. We also collect usage data automatically when you interact with
+              our website, including IP address, browser type, pages visited, and time spent.
             </p>
           </section>
 
@@ -57,10 +57,7 @@ export default function PrivacyPolicyPage() {
             <h2 className="text-base font-semibold text-foreground mb-2">5. Contact</h2>
             <p>
               If you have any questions about this Privacy Policy, please reach out to us
-              via the Connect form on our website or email us at{" "}
-              <a href="https://mail.google.com/mail/?view=cm&to=webitailabs@gmail.com" target="_blank" rel="noopener noreferrer" className="text-accent underline underline-offset-2 hover:text-foreground transition-colors">
-                webitailabs@gmail.com
-              </a>.
+              via the contact form or WhatsApp on our website.
             </p>
           </section>
         </div>

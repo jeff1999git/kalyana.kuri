@@ -2,35 +2,58 @@ import { StaggerContainer } from "@/components/animations/StaggerContainer";
 import { RevealOnScroll } from "@/components/animations/RevealOnScroll";
 import { SlideUp } from "@/components/animations/SlideUp";
 import { GradientText } from "@/components/ui/GradientText";
+import { Badge } from "@/components/ui/Badge";
+import { WHATSAPP_MESSAGE, whatsappUrl } from "@/lib/site";
 
-const testimonials = [
+const plans = [
   {
-    quote:
-      "WebitAi shipped our MVP in 6 weeks. The quality was production-grade from day one — not 'we'll clean it up later' quality.",
-    author: "Sarah Chen",
-    role: "Founder, Pulse Analytics",
-    avatar: "SC",
+    name: "Essential",
+    price: "₹1,499",
+    popular: false,
+    features: [
+      "Digital invitation",
+      "One event",
+      "Basic customisation",
+      "Venue & maps",
+      "Photo section",
+      "Shareable link",
+    ],
   },
   {
-    quote:
-      "I've worked with large agencies and offshore teams. Nothing comes close to the speed and craft we got from this team.",
-    author: "Marcus Reid",
-    role: "CTO, Cortex AI",
-    avatar: "MR",
+    name: "Signature",
+    price: "₹2,999",
+    popular: true,
+    features: [
+      "Multiple events",
+      "Custom design",
+      "Gallery",
+      "Countdown",
+      "RSVP",
+      "Music",
+      "Animations",
+      "6 months hosting",
+    ],
   },
   {
-    quote:
-      "The AI integration work they did saved us 3 months of development. They just get it — the tech and the product thinking.",
-    author: "Priya Nair",
-    role: "Product Lead, Beacon Finance",
-    avatar: "PN",
+    name: "Custom Experience",
+    price: "₹6,999",
+    popular: false,
+    features: [
+      "Fully customised experience",
+      "Storytelling",
+      "Advanced animations",
+      "Multiple sections",
+      "Custom interactions",
+      "RSVP/guest features",
+      "Priority support",
+    ],
   },
 ];
 
-export function Testimonials() {
+export function Pricing() {
   return (
     <section
-      id="testimonials"
+      id="pricing"
       className="relative py-20 md:py-32 overflow-hidden"
     >
       <div
@@ -42,13 +65,12 @@ export function Testimonials() {
         <div className="mb-12 md:mb-20 text-center max-w-xl mx-auto">
           <SlideUp>
             <p className="text-xs font-medium tracking-widest uppercase text-accent mb-4">
-              Testimonials
+              Pricing
             </p>
           </SlideUp>
           <SlideUp delay={0.05}>
             <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground leading-tight">
-              Clients who{" "}
-              <GradientText>love the work</GradientText>
+              Choose the <GradientText>experience</GradientText> that fits your day
             </h2>
           </SlideUp>
         </div>
@@ -57,35 +79,56 @@ export function Testimonials() {
           speed="normal"
           className="grid grid-cols-1 md:grid-cols-3 gap-6"
         >
-          {testimonials.map((t) => (
+          {plans.map((plan) => (
             <RevealOnScroll
-              key={t.author}
+              key={plan.name}
               direction="up"
-              className="flex flex-col gap-6 rounded-2xl border border-surface-border bg-surface p-6 md:p-8"
+              className={`flex flex-col gap-6 rounded-2xl border bg-surface p-6 md:p-8 ${
+                plan.popular ? "border-white/20" : "border-surface-border"
+              }`}
             >
-              {/* Stars */}
-              <div className="flex gap-1">
-                {[...Array(5)].map((_, i) => (
-                  <span key={i} className="text-violet-400 text-sm">★</span>
+              <div className="flex items-center justify-between gap-2">
+                <p className="text-xs font-medium tracking-widest uppercase text-accent">
+                  {plan.name}
+                </p>
+                {plan.popular && <Badge>Most Popular</Badge>}
+              </div>
+
+              <div>
+                <p className="text-xs text-foreground/40 mb-1">Starting from</p>
+                <p className="text-3xl font-bold text-foreground">{plan.price}</p>
+              </div>
+
+              <ul className="flex flex-col gap-2 flex-1">
+                {plan.features.map((feature) => (
+                  <li key={feature} className="flex items-start gap-2 text-sm text-foreground/70">
+                    <span className="text-green-400 shrink-0 mt-px">✓</span>
+                    <span>{feature}</span>
+                  </li>
                 ))}
-              </div>
+              </ul>
 
-              <p className="text-foreground/70 leading-relaxed text-sm flex-1">
-                &ldquo;{t.quote}&rdquo;
-              </p>
-
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-violet-500/30 to-indigo-500/30 border border-surface-border flex items-center justify-center text-xs font-semibold text-foreground/60">
-                  {t.avatar}
-                </div>
-                <div>
-                  <p className="text-sm font-medium text-foreground">{t.author}</p>
-                  <p className="text-xs text-foreground/40">{t.role}</p>
-                </div>
-              </div>
+              <a
+                href={whatsappUrl(`${WHATSAPP_MESSAGE} Plan: ${plan.name}.`)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex items-center justify-center h-11 rounded-full text-sm font-semibold transition-all duration-normal ease-smooth ${
+                  plan.popular
+                    ? "bg-white text-black hover:bg-white/90"
+                    : "border border-surface-border text-foreground hover:border-white/40 hover:bg-white/5"
+                }`}
+              >
+                Create Yours
+              </a>
             </RevealOnScroll>
           ))}
         </StaggerContainer>
+
+        <SlideUp delay={0.15}>
+          <p className="text-xs text-foreground/30 text-center mt-8">
+            All prices are starting points — tell us about your celebration for an exact quote.
+          </p>
+        </SlideUp>
       </div>
     </section>
   );

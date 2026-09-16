@@ -5,6 +5,7 @@ import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from
 import { DURATION, EASE } from "@/lib/animation";
 import { Glitter } from "@/components/animations/Glitter";
 import { DaVinciLines } from "@/components/animations/DaVinciLines";
+import { whatsappUrl } from "@/lib/site";
 
 // Shopify-style elastic overshoot easing
 const ELASTIC = [0.34, 1.56, 0.64, 1] as const;
@@ -18,7 +19,7 @@ export function Hero() {
     setIsTouch(window.matchMedia("(pointer: coarse)").matches);
   }, []);
 
-  const cyclingWords = ["WebTool?", "website?", "platform?"];
+  const cyclingWords = ["weddings.", "engagements.", "celebrations."];
   const [wordIndex, setWordIndex] = useState(0);
   useEffect(() => {
     const id = setInterval(() => setWordIndex((i) => (i + 1) % cyclingWords.length), 2000);
@@ -155,7 +156,7 @@ export function Hero() {
             transition={{ duration: DURATION.slow, ease: [...EASE.enter], delay: 0.7 }}
             className="text-sm font-bold tracking-[0.12em] uppercase text-white mb-4"
           >
-            Can Ai make a{" "}
+            Digital invitations for{" "}
             <span className="inline-block relative">
               <AnimatePresence mode="wait">
                 <motion.span
@@ -179,7 +180,7 @@ export function Hero() {
             transition={{ duration: DURATION.slow, ease: [...EASE.enter], delay: 0.85 }}
             className="text-3xl md:text-4xl font-bold text-white leading-[1.1] tracking-tight mb-4"
           >
-            Yes, this website<br />is the proof.
+            Your special moments<br />deserve more than a PDF.
           </motion.h1>
 
           {/* description */}
@@ -189,8 +190,7 @@ export function Hero() {
             transition={{ duration: DURATION.slow, ease: [...EASE.enter], delay: 1.0 }}
             className="text-sm text-white/90 leading-relaxed mb-6 drop-shadow-sm"
           >
-            Built entirely with vibe coding in just half day, not a single line of code typed by hand. Just AI, prompts, and a vision.{" "}
-            <span className="md:hidden">View in big screen to see the full effect.</span>
+            Beautiful digital invitations & interactive experiences for weddings, celebrations and events.
           </motion.p>
 
           {/* CTAs */}
@@ -198,16 +198,27 @@ export function Hero() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: DURATION.slow, ease: [...EASE.enter], delay: 1.15 }}
-            className="flex items-center gap-4"
+            className="flex items-center gap-3"
           >
             <motion.a
-              href="#contact"
+              href="#work"
               whileHover={{ scale: 1.06 }}
               whileTap={{ scale: 0.97 }}
               transition={{ type: "spring", stiffness: 500, damping: 18 }}
               className="inline-flex items-center justify-center h-9 px-5 text-xs font-semibold rounded-full bg-white/90 text-black hover:bg-white"
             >
-              Workshop Registration
+              Explore Our Work
+            </motion.a>
+            <motion.a
+              href={whatsappUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.06 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ type: "spring", stiffness: 500, damping: 18 }}
+              className="inline-flex items-center justify-center h-9 px-5 text-xs font-semibold rounded-full border border-white/70 text-white hover:bg-white/10"
+            >
+              Create Yours
             </motion.a>
           </motion.div>
         </motion.div>

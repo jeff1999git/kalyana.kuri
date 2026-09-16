@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { StarField } from "@/components/animations/StarField";
 
-export const metadata = { title: "Terms & Conditions — WebitAi" };
+export const metadata = { title: "Terms & Conditions — Kalyana.kuri" };
 
 export default function TermsConditionsPage() {
   return (
@@ -29,9 +29,9 @@ export default function TermsConditionsPage() {
             <h2 className="text-base font-semibold text-foreground mb-2">2. Intellectual Property</h2>
             <p>
               All content on this website — including text, graphics, logos, animations,
-              and code — is the property of WebitAi and is protected by applicable intellectual
-              property laws. You may not reproduce, distribute, or create derivative works
-              without our express written consent.
+              and code — is the property of Kalyana.kuri and is protected by applicable
+              intellectual property laws. You may not reproduce, distribute, or create
+              derivative works without our express written consent.
             </p>
           </section>
 
@@ -47,8 +47,8 @@ export default function TermsConditionsPage() {
           <section>
             <h2 className="text-base font-semibold text-foreground mb-2">4. Limitation of Liability</h2>
             <p>
-              To the fullest extent permitted by law, WebitAi shall not be liable for any
-              indirect, incidental, special, or consequential damages arising from your
+              To the fullest extent permitted by law, Kalyana.kuri shall not be liable for
+              any indirect, incidental, special, or consequential damages arising from your
               use of the website or our services, even if advised of the possibility of
               such damages.
             </p>
@@ -67,7 +67,7 @@ export default function TermsConditionsPage() {
             <h2 className="text-base font-semibold text-foreground mb-2">6. Contact</h2>
             <p>
               For any questions regarding these Terms & Conditions, please contact us
-              through the Connect form on our website.
+              through the contact form on our website.
             </p>
           </section>
         </div>

@@ -2,42 +2,31 @@ import { StaggerContainer } from "@/components/animations/StaggerContainer";
 import { RevealOnScroll } from "@/components/animations/RevealOnScroll";
 import { SlideUp } from "@/components/animations/SlideUp";
 import { GradientText } from "@/components/ui/GradientText";
+import { WHATSAPP_PARTNER_MESSAGE, whatsappUrl } from "@/lib/site";
 
-const projects = [
-  {
-    title: "Pulse Analytics",
-    category: "SaaS Dashboard",
-    description: "Real-time analytics platform for e-commerce brands — built on Next.js with live WebSocket data streams.",
-    tags: ["Next.js", "WebSockets", "Postgres"],
-    accentColor: "from-violet-500/10 to-purple-500/5",
-  },
-  {
-    title: "Cortex AI",
-    category: "AI Product",
-    description: "Conversational AI assistant with RAG pipeline, document ingestion, and enterprise SSO.",
-    tags: ["Claude API", "Pinecone", "Auth.js"],
-    accentColor: "from-indigo-500/10 to-blue-500/5",
-  },
-  {
-    title: "Founders Club",
-    category: "Community Platform",
-    description: "Membership platform with gated content, live events, and payments — 0 to 5k users in 3 months.",
-    tags: ["Next.js", "Stripe", "Sanity"],
-    accentColor: "from-sky-500/10 to-cyan-500/5",
-  },
-  {
-    title: "Beacon Finance",
-    category: "Fintech App",
-    description: "Personal finance dashboard with bank integrations, ML-powered insights, and a native mobile app.",
-    tags: ["React Native", "Plaid", "Python"],
-    accentColor: "from-emerald-500/10 to-green-500/5",
-  },
+const targets = [
+  "Wedding photographers",
+  "Wedding planners",
+  "Wedding venues",
+  "Wedding decorators",
+  "Bridal boutiques",
+  "Jewellery stores",
+  "Invitation printing shops",
+  "Event companies",
 ];
 
-export function Work() {
+const benefits = [
+  "Additional revenue",
+  "No technical work",
+  "Premium add-on for clients",
+  "We handle design & development",
+  "Commission on every booking",
+];
+
+export function Partners() {
   return (
     <section
-      id="work"
+      id="partners"
       className="relative py-20 md:py-32 overflow-hidden"
     >
       {/* Subtle section separator glow */}
@@ -52,70 +41,73 @@ export function Work() {
           <div className="max-w-xl">
             <SlideUp>
               <p className="text-xs font-medium tracking-widest uppercase text-accent mb-4">
-                Selected work
+                Partners
               </p>
             </SlideUp>
             <SlideUp delay={0.05}>
               <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground leading-tight">
-                Products we&apos;re{" "}
-                <GradientText>proud of</GradientText>
+                Are you a{" "}
+                <GradientText>wedding professional</GradientText>?
               </h2>
             </SlideUp>
+            <SlideUp delay={0.1}>
+              <p className="text-sm text-foreground/50 leading-relaxed mt-4">
+                Offer premium digital invitations to your clients and earn a commission on every booking.
+              </p>
+            </SlideUp>
           </div>
-          <SlideUp delay={0.1}>
+          <SlideUp delay={0.15}>
             <a
-              href="#contact"
-              className="text-sm text-foreground/40 hover:text-foreground transition-colors duration-fast shrink-0"
+              href={whatsappUrl(WHATSAPP_PARTNER_MESSAGE)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center h-11 px-6 text-sm font-semibold rounded-full bg-white text-black hover:bg-white/90 transition-all duration-normal ease-smooth shrink-0"
             >
-              All case studies →
+              Become a Partner
             </a>
           </SlideUp>
         </div>
 
-        {/* Projects grid */}
+        {/* Targets + benefits grid */}
         <StaggerContainer
           speed="normal"
           className="grid grid-cols-1 md:grid-cols-2 gap-6"
         >
-          {projects.map((project) => (
-            <RevealOnScroll
-              key={project.title}
-              direction="up"
-              className="group relative rounded-2xl border border-surface-border bg-surface overflow-hidden cursor-pointer hover:border-white/10 transition-all duration-slow ease-smooth"
-            >
-              {/* Project card visual area */}
-              {/* Future: replace with animated project preview/video */}
-              <div
-                className={`h-56 bg-gradient-to-br ${project.accentColor} flex items-center justify-center`}
-              >
-                <span className="text-4xl font-black text-foreground/5 select-none">
-                  {project.title[0]}
+          <RevealOnScroll
+            direction="up"
+            className="rounded-2xl border border-surface-border bg-surface p-6 md:p-8"
+          >
+            <p className="text-xs text-foreground/30 font-medium tracking-wide uppercase mb-4">
+              Who we partner with
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {targets.map((target) => (
+                <span
+                  key={target}
+                  className="text-xs px-2 py-1 rounded-md bg-background border border-surface-border text-foreground/50"
+                >
+                  {target}
                 </span>
-              </div>
+              ))}
+            </div>
+          </RevealOnScroll>
 
-              <div className="p-6">
-                <p className="text-xs text-foreground/30 font-medium tracking-wide uppercase mb-2">
-                  {project.category}
-                </p>
-                <h3 className="text-xl font-semibold text-foreground mb-2">
-                  {project.title}
-                </h3>
-                <p className="text-sm text-foreground/50 leading-relaxed mb-4">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-xs px-2 py-1 rounded-md bg-background border border-surface-border text-foreground/30"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </RevealOnScroll>
-          ))}
+          <RevealOnScroll
+            direction="up"
+            className="rounded-2xl border border-surface-border bg-surface p-6 md:p-8"
+          >
+            <p className="text-xs text-foreground/30 font-medium tracking-wide uppercase mb-4">
+              Why partner with us
+            </p>
+            <ul className="flex flex-col gap-2">
+              {benefits.map((benefit) => (
+                <li key={benefit} className="flex items-start gap-2 text-sm text-foreground/70">
+                  <span className="text-green-400 shrink-0 mt-px">✓</span>
+                  <span>{benefit}</span>
+                </li>
+              ))}
+            </ul>
+          </RevealOnScroll>
         </StaggerContainer>
       </div>
     </section>

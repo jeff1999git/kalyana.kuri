@@ -3,43 +3,35 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Fireflies } from "@/components/animations/Fireflies";
+import { GradientText } from "@/components/ui/GradientText";
 
-const BOXES = [
+const PROJECTS = [
   {
-    word: "Teach",
-    desc: "Understand how AI can build real websites without coding knowledge.",
-    x: "40%", y: "12%",
+    title: "Vishnu & Anupama",
+    category: "Wedding Invitation",
+    href: "https://vishnu-anupama.framer.ai/",
+    x: "40%", y: "30%",
     float: { dur: 3.6, delay: 0 },
   },
   {
-    word: "Prompt",
-    desc: "Learn how to communicate with AI using simple natural language prompts.",
-    x: "58%", y: "24%",
+    title: "Vishnu — The Groom",
+    category: "Custom Wedding Experience",
+    href: "https://vishnuvirtualgroom.vercel.app/",
+    x: "58%", y: "46%",
     float: { dur: 4.2, delay: 0.8 },
   },
   {
-    word: "Design",
-    desc: "Create modern and responsive website layouts using AI assistance.",
-    x: "44%", y: "50%",
+    title: "Nora",
+    category: "Farewell Gallery",
+    href: "https://noraaa.vercel.app/",
+    x: "42%", y: "64%",
     float: { dur: 3.9, delay: 1.4 },
-  },
-  {
-    word: "Build",
-    desc: "Generate complete landing pages and business websites hands-on.",
-    x: "36%", y: "34%",
-    float: { dur: 4.5, delay: 0.4 },
-  },
-  {
-    word: "Launch",
-    desc: "Publish your website online and make your idea live to the world.",
-    x: "52%", y: "66%",
-    float: { dur: 3.3, delay: 1.1 },
   },
 ];
 
-function FloatingBox({
-  word, desc, x, y, float: { dur, delay },
-}: (typeof BOXES)[number]) {
+function FloatingProject({
+  title, category, href, x, y, float: { dur, delay },
+}: (typeof PROJECTS)[number]) {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -49,18 +41,21 @@ function FloatingBox({
       animate={{ y: [0, -14, 0] }}
       transition={{ duration: dur, repeat: Infinity, ease: "easeInOut", delay }}
     >
-      <motion.div
+      <motion.a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
         onHoverStart={() => setHovered(true)}
         onHoverEnd={() => setHovered(false)}
         whileHover={{ scale: 1.1, y: -8 }}
         transition={{ type: "spring", stiffness: 350, damping: 24 }}
-        className="cursor-default rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 px-6 py-4 origin-center
+        className="block cursor-pointer rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 px-6 py-4 origin-center
           hover:bg-white/20 hover:border-white/40 hover:shadow-[0_12px_40px_rgba(255,255,255,0.12)]
           transition-[background-color,border-color,box-shadow] duration-300"
-        style={{ minWidth: 110 }}
+        style={{ minWidth: 160 }}
       >
         <p className="text-base font-bold text-foreground text-center tracking-wide">
-          {word}
+          {title}
         </p>
 
         <AnimatePresence>
@@ -70,21 +65,23 @@ function FloatingBox({
               animate={{ opacity: 1, height: "auto", marginTop: 8 }}
               exit={{ opacity: 0, height: 0, marginTop: 0 }}
               transition={{ duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
-              className="text-xs text-foreground/70 leading-relaxed text-center max-w-[160px] overflow-hidden"
+              className="text-xs text-foreground/70 leading-relaxed text-center max-w-[200px] overflow-hidden"
             >
-              {desc}
+              {category}
+              <br />
+              <span className="text-accent">View Experience →</span>
             </motion.p>
           )}
         </AnimatePresence>
-      </motion.div>
+      </motion.a>
     </motion.div>
   );
 }
 
-export function About() {
+export function Work() {
   return (
     <section
-      id="about"
+      id="work"
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
     >
       {/* static background */}
@@ -104,6 +101,16 @@ export function About() {
         aria-hidden
         className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-surface-border to-transparent"
       />
+
+      {/* heading — desktop only, floats above the project cards */}
+      <div className="hidden md:block absolute top-[8%] inset-x-0 z-10 text-center px-6">
+        <p className="text-xs font-medium tracking-widest uppercase text-accent mb-4">
+          Our work
+        </p>
+        <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground leading-tight">
+          See What We <GradientText>Create</GradientText>
+        </h2>
+      </div>
 
       {/* bottom-anchored glowing figure — desktop only */}
       <div className="hidden md:block">
@@ -129,49 +136,40 @@ export function About() {
         </picture>
       </div>
 
-      {/* side-center glowing figure — desktop only */}
-      <div className="hidden md:block">
-        <picture>
-          <source srcSet="/optimized/2.1-orig.avif" type="image/avif" />
-          <source srcSet="/optimized/2.1-orig.webp" type="image/webp" />
-          <motion.img
-            // eslint-disable-next-line @next/next/no-img-element
-            src="/optimized/2.1-orig.png"
-            alt=""
-            aria-hidden
-            loading="lazy"
-            className="absolute top-1/2 -translate-y-1/2 left-0 w-[20rem] lg:w-[26rem] object-contain pointer-events-none"
-            animate={{
-              filter: [
-                "drop-shadow(0 0 8px rgba(255,255,255,0.25))",
-                "drop-shadow(0 0 32px rgba(255,255,255,0.75))",
-                "drop-shadow(0 0 8px rgba(255,255,255,0.25))",
-              ],
-            }}
-            transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </picture>
-      </div>
+      {/* mobile layout: heading + static card grid */}
+      <div className="md:hidden relative z-10 w-full px-6 py-8 flex flex-col items-center justify-center min-h-screen gap-8">
+        <div className="text-center">
+          <p className="text-xs font-medium tracking-widest uppercase text-accent mb-4">
+            Our work
+          </p>
+          <h2 className="text-4xl font-bold tracking-tight text-foreground leading-tight">
+            See What We <GradientText>Create</GradientText>
+          </h2>
+        </div>
 
-      {/* mobile layout: static card grid */}
-      <div className="md:hidden relative z-10 w-full px-6 py-8 flex items-center justify-center min-h-screen">
         <div className="grid grid-cols-2 gap-3 w-full max-w-xs">
-          {BOXES.map((box) => (
-            <div
-              key={box.word}
-              className={`rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 px-4 py-4${box.word === "Build" ? " col-span-2" : ""}`}
+          {PROJECTS.map((project, i) => (
+            <a
+              key={project.title}
+              href={project.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 px-4 py-4${
+                i === PROJECTS.length - 1 && PROJECTS.length % 2 === 1 ? " col-span-2" : ""
+              }`}
             >
-              <p className="text-sm font-bold text-foreground text-center tracking-wide">{box.word}</p>
-              <p className="text-xs text-foreground/60 text-center mt-2 leading-relaxed">{box.desc}</p>
-            </div>
+              <p className="text-sm font-bold text-foreground text-center tracking-wide">{project.title}</p>
+              <p className="text-xs text-foreground/60 text-center mt-2 leading-relaxed">{project.category}</p>
+              <p className="text-xs text-accent text-center mt-2">View Experience →</p>
+            </a>
           ))}
         </div>
       </div>
 
-      {/* desktop layout: floating boxes */}
-      {BOXES.map((box) => (
-        <div key={box.word} className="hidden md:block">
-          <FloatingBox {...box} />
+      {/* desktop layout: floating project cards */}
+      {PROJECTS.map((project) => (
+        <div key={project.title} className="hidden md:block">
+          <FloatingProject {...project} />
         </div>
       ))}
     </section>

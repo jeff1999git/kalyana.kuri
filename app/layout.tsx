@@ -15,14 +15,28 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "WebitAi — AI-Powered Web Studio",
+  title: "Kalyana.kuri | Digital Wedding Invitations & Event Experiences",
   description:
-    "We craft high-performance web experiences powered by AI — from landing pages to full-stack platforms that scale.",
-  keywords: ["web development", "AI", "Next.js", "SaaS", "agency"],
+    "Beautiful digital wedding invitations and interactive experiences for weddings, celebrations and special moments.",
+  keywords: [
+    "digital wedding invitation",
+    "wedding invitation website",
+    "digital invitation",
+    "RSVP",
+    "wedding website Kerala",
+  ],
   openGraph: {
-    title: "WebitAi — AI-Powered Web Studio",
-    description: "Build smarter. Launch faster.",
+    title: "Kalyana.kuri | Digital Wedding Invitations & Event Experiences",
+    description:
+      "Beautiful digital wedding invitations and interactive experiences for weddings, celebrations and special moments.",
+    siteName: "Kalyana.kuri",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Kalyana.kuri | Digital Wedding Invitations & Event Experiences",
+    description:
+      "Beautiful digital wedding invitations and interactive experiences for weddings, celebrations and special moments.",
   },
 };
 

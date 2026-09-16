@@ -3,11 +3,14 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
+import { whatsappUrl } from "@/lib/site";
 
 const navLinks = [
-  { label: "Services", href: "/#about" },
-  { label: "Connect", href: "/#contact" },
+  { label: "Work", href: "/#work" },
+  { label: "Features", href: "/#features" },
+  { label: "Occasions", href: "/#occasions" },
+  { label: "Pricing", href: "/#pricing" },
+  { label: "Partners", href: "/#partners" },
 ];
 
 export function Navbar() {
@@ -23,9 +26,8 @@ export function Navbar() {
       <div className="py-5 container mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
-          <Image src="/webitai-logo.png" alt="WebitAi logo" width={28} height={28} className="object-contain" />
           <span className="text-lg font-bold tracking-tight text-foreground">
-            WebitAi
+            Kalyana.kuri
           </span>
         </Link>
 
@@ -40,6 +42,14 @@ export function Navbar() {
               {link.label}
             </a>
           ))}
+          <a
+            href={whatsappUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center h-9 px-5 text-xs font-semibold rounded-full bg-white/90 text-black hover:bg-white transition-all duration-fast"
+          >
+            Create Yours
+          </a>
         </nav>
 
         {/* Mobile hamburger */}
@@ -87,6 +97,15 @@ export function Navbar() {
                   {link.label}
                 </a>
               ))}
+              <a
+                href={whatsappUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setOpen(false)}
+                className="mt-2 inline-flex items-center justify-center h-10 rounded-full bg-white/90 text-black text-sm font-semibold hover:bg-white transition-all duration-fast"
+              >
+                Create Yours
+              </a>
             </div>
           </motion.nav>
         )}

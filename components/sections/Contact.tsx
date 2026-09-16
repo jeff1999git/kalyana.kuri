@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { SlideUp } from "@/components/animations/SlideUp";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { StarField } from "@/components/animations/StarField";
+import { SITE, whatsappUrl } from "@/lib/site";
 
 function BlinkingFigure() {
   return (
@@ -125,19 +126,19 @@ export function Contact() {
             <div className="mb-6">
               <SlideUp>
                 <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground leading-tight">
-                  Register for Workshop
+                  Make your invitation unforgettable.
                 </h2>
               </SlideUp>
               <SlideUp delay={0.06}>
                 <p className="text-base md:text-lg font-medium text-accent mt-1 tracking-wide">
-                  പഠിക്കാം AI
+                  {SITE.tagline}
                 </p>
               </SlideUp>
             </div>
 
             <SlideUp delay={0.1}>
               <p className="text-sm text-foreground/50 leading-relaxed mb-8">
-                Interested in joining our AI website building workshop? Fill in the form below and we&apos;ll get back to you with all the details. Have a question? Drop it in the message box — we&apos;re happy to help.
+                Tell us about your celebration and let&apos;s create something beautiful. Fill in the form below and we&apos;ll get back to you with all the details.
               </p>
             </SlideUp>
 
@@ -169,7 +170,7 @@ export function Contact() {
                 <textarea
                   required
                   rows={4}
-                  placeholder="Message"
+                  placeholder="Tell us about your celebration"
                   value={fields.message}
                   onChange={(e) => setFields((f) => ({ ...f, message: e.target.value }))}
                   className="rounded-xl bg-surface border border-surface-border px-4 py-3 text-sm text-foreground placeholder:text-foreground/20 focus:outline-none focus:border-accent/60 transition-colors duration-fast resize-none"
@@ -182,8 +183,16 @@ export function Contact() {
                   disabled={loading}
                   className="mt-2 h-12 rounded-full bg-white text-black text-sm font-semibold hover:bg-white/90 transition-all duration-normal ease-smooth disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {loading ? "Sending…" : "Send"}
+                  {loading ? "Sending…" : "Create My Invitation"}
                 </button>
+                <a
+                  href={whatsappUrl()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-foreground/50 hover:text-foreground text-center transition-colors duration-fast"
+                >
+                  or chat with us on WhatsApp →
+                </a>
               </form>
             </FadeIn>
           </div>
