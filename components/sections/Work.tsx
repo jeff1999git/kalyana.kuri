@@ -1,123 +1,179 @@
-import { StaggerContainer } from "@/components/animations/StaggerContainer";
-import { RevealOnScroll } from "@/components/animations/RevealOnScroll";
-import { SlideUp } from "@/components/animations/SlideUp";
-import { GradientText } from "@/components/ui/GradientText";
+"use client";
 
-const projects = [
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Fireflies } from "@/components/animations/Fireflies";
+
+const BOXES = [
   {
-    title: "Pulse Analytics",
-    category: "SaaS Dashboard",
-    description: "Real-time analytics platform for e-commerce brands — built on Next.js with live WebSocket data streams.",
-    tags: ["Next.js", "WebSockets", "Postgres"],
-    accentColor: "from-violet-500/10 to-purple-500/5",
+    word: "Teach",
+    desc: "Understand how AI can build real websites without coding knowledge.",
+    x: "40%", y: "12%",
+    float: { dur: 3.6, delay: 0 },
   },
   {
-    title: "Cortex AI",
-    category: "AI Product",
-    description: "Conversational AI assistant with RAG pipeline, document ingestion, and enterprise SSO.",
-    tags: ["Claude API", "Pinecone", "Auth.js"],
-    accentColor: "from-indigo-500/10 to-blue-500/5",
+    word: "Prompt",
+    desc: "Learn how to communicate with AI using simple natural language prompts.",
+    x: "58%", y: "24%",
+    float: { dur: 4.2, delay: 0.8 },
   },
   {
-    title: "Founders Club",
-    category: "Community Platform",
-    description: "Membership platform with gated content, live events, and payments — 0 to 5k users in 3 months.",
-    tags: ["Next.js", "Stripe", "Sanity"],
-    accentColor: "from-sky-500/10 to-cyan-500/5",
+    word: "Design",
+    desc: "Create modern and responsive website layouts using AI assistance.",
+    x: "44%", y: "50%",
+    float: { dur: 3.9, delay: 1.4 },
   },
   {
-    title: "Beacon Finance",
-    category: "Fintech App",
-    description: "Personal finance dashboard with bank integrations, ML-powered insights, and a native mobile app.",
-    tags: ["React Native", "Plaid", "Python"],
-    accentColor: "from-emerald-500/10 to-green-500/5",
+    word: "Build",
+    desc: "Generate complete landing pages and business websites hands-on.",
+    x: "36%", y: "34%",
+    float: { dur: 4.5, delay: 0.4 },
+  },
+  {
+    word: "Launch",
+    desc: "Publish your website online and make your idea live to the world.",
+    x: "52%", y: "66%",
+    float: { dur: 3.3, delay: 1.1 },
   },
 ];
 
-export function Work() {
+function FloatingBox({
+  word, desc, x, y, float: { dur, delay },
+}: (typeof BOXES)[number]) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <motion.div
+      className="absolute"
+      style={{ left: x, top: y, translateX: "-50%", translateY: "-50%" }}
+      animate={{ y: [0, -14, 0] }}
+      transition={{ duration: dur, repeat: Infinity, ease: "easeInOut", delay }}
+    >
+      <motion.div
+        onHoverStart={() => setHovered(true)}
+        onHoverEnd={() => setHovered(false)}
+        whileHover={{ scale: 1.1, y: -8 }}
+        transition={{ type: "spring", stiffness: 350, damping: 24 }}
+        className="cursor-default rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 px-6 py-4 origin-center
+          hover:bg-white/20 hover:border-white/40 hover:shadow-[0_12px_40px_rgba(255,255,255,0.12)]
+          transition-[background-color,border-color,box-shadow] duration-300"
+        style={{ minWidth: 110 }}
+      >
+        <p className="text-base font-bold text-foreground text-center tracking-wide">
+          {word}
+        </p>
+
+        <AnimatePresence>
+          {hovered && (
+            <motion.p
+              initial={{ opacity: 0, height: 0, marginTop: 0 }}
+              animate={{ opacity: 1, height: "auto", marginTop: 8 }}
+              exit={{ opacity: 0, height: 0, marginTop: 0 }}
+              transition={{ duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
+              className="text-xs text-foreground/70 leading-relaxed text-center max-w-[160px] overflow-hidden"
+            >
+              {desc}
+            </motion.p>
+          )}
+        </AnimatePresence>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+export function About() {
   return (
     <section
-      id="work"
-      className="relative py-20 md:py-32 overflow-hidden"
+      id="about"
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
     >
-      {/* Subtle section separator glow */}
+      {/* static background */}
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-10"
+        style={{
+          backgroundImage: "url('/optimized/2-orig.webp')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      />
+
+      <Fireflies />
+
       <div
         aria-hidden
         className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-surface-border to-transparent"
       />
 
-      <div className="container mx-auto px-6">
-        {/* Header */}
-        <div className="mb-12 md:mb-20 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-          <div className="max-w-xl">
-            <SlideUp>
-              <p className="text-xs font-medium tracking-widest uppercase text-accent mb-4">
-                Selected work
-              </p>
-            </SlideUp>
-            <SlideUp delay={0.05}>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground leading-tight">
-                Products we&apos;re{" "}
-                <GradientText>proud of</GradientText>
-              </h2>
-            </SlideUp>
-          </div>
-          <SlideUp delay={0.1}>
-            <a
-              href="#contact"
-              className="text-sm text-foreground/40 hover:text-foreground transition-colors duration-fast shrink-0"
-            >
-              All case studies →
-            </a>
-          </SlideUp>
-        </div>
-
-        {/* Projects grid */}
-        <StaggerContainer
-          speed="normal"
-          className="grid grid-cols-1 md:grid-cols-2 gap-6"
-        >
-          {projects.map((project) => (
-            <RevealOnScroll
-              key={project.title}
-              direction="up"
-              className="group relative rounded-2xl border border-surface-border bg-surface overflow-hidden cursor-pointer hover:border-white/10 transition-all duration-slow ease-smooth"
-            >
-              {/* Project card visual area */}
-              {/* Future: replace with animated project preview/video */}
-              <div
-                className={`h-56 bg-gradient-to-br ${project.accentColor} flex items-center justify-center`}
-              >
-                <span className="text-4xl font-black text-foreground/5 select-none">
-                  {project.title[0]}
-                </span>
-              </div>
-
-              <div className="p-6">
-                <p className="text-xs text-foreground/30 font-medium tracking-wide uppercase mb-2">
-                  {project.category}
-                </p>
-                <h3 className="text-xl font-semibold text-foreground mb-2">
-                  {project.title}
-                </h3>
-                <p className="text-sm text-foreground/50 leading-relaxed mb-4">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-xs px-2 py-1 rounded-md bg-background border border-surface-border text-foreground/30"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </RevealOnScroll>
-          ))}
-        </StaggerContainer>
+      {/* bottom-anchored glowing figure — desktop only */}
+      <div className="hidden md:block">
+        <picture>
+          <source srcSet="/optimized/2.2-orig.avif" type="image/avif" />
+          <source srcSet="/optimized/2.2-orig.webp" type="image/webp" />
+          <motion.img
+            // eslint-disable-next-line @next/next/no-img-element
+            src="/optimized/2.2-orig.png"
+            alt=""
+            aria-hidden
+            loading="lazy"
+            className="absolute bottom-0 right-8 w-[28rem] lg:w-[36rem] object-contain object-bottom pointer-events-none"
+            animate={{
+              filter: [
+                "drop-shadow(0 0 8px rgba(255,255,255,0.25))",
+                "drop-shadow(0 0 32px rgba(255,255,255,0.75))",
+                "drop-shadow(0 0 8px rgba(255,255,255,0.25))",
+              ],
+            }}
+            transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+          />
+        </picture>
       </div>
+
+      {/* side-center glowing figure — desktop only */}
+      <div className="hidden md:block">
+        <picture>
+          <source srcSet="/optimized/2.1-orig.avif" type="image/avif" />
+          <source srcSet="/optimized/2.1-orig.webp" type="image/webp" />
+          <motion.img
+            // eslint-disable-next-line @next/next/no-img-element
+            src="/optimized/2.1-orig.png"
+            alt=""
+            aria-hidden
+            loading="lazy"
+            className="absolute top-1/2 -translate-y-1/2 left-0 w-[20rem] lg:w-[26rem] object-contain pointer-events-none"
+            animate={{
+              filter: [
+                "drop-shadow(0 0 8px rgba(255,255,255,0.25))",
+                "drop-shadow(0 0 32px rgba(255,255,255,0.75))",
+                "drop-shadow(0 0 8px rgba(255,255,255,0.25))",
+              ],
+            }}
+            transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+          />
+        </picture>
+      </div>
+
+      {/* mobile layout: static card grid */}
+      <div className="md:hidden relative z-10 w-full px-6 py-8 flex items-center justify-center min-h-screen">
+        <div className="grid grid-cols-2 gap-3 w-full max-w-xs">
+          {BOXES.map((box) => (
+            <div
+              key={box.word}
+              className={`rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20 px-4 py-4${box.word === "Build" ? " col-span-2" : ""}`}
+            >
+              <p className="text-sm font-bold text-foreground text-center tracking-wide">{box.word}</p>
+              <p className="text-xs text-foreground/60 text-center mt-2 leading-relaxed">{box.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* desktop layout: floating boxes */}
+      {BOXES.map((box) => (
+        <div key={box.word} className="hidden md:block">
+          <FloatingBox {...box} />
+        </div>
+      ))}
     </section>
   );
 }
