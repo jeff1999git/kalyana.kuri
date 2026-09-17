@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { SlideUp } from "@/components/animations/SlideUp";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { StarField } from "@/components/animations/StarField";
-import { SITE, whatsappUrl } from "@/lib/site";
+import { PiInstagramLogo, PiWhatsappLogo } from "react-icons/pi";
+import { INSTAGRAM_URL, SITE, whatsappUrl } from "@/lib/site";
 
 function BlinkingFigure() {
   return (
@@ -185,14 +186,27 @@ export function Contact() {
                 >
                   {loading ? "Sending…" : "Create My Invitation"}
                 </button>
-                <a
-                  href={whatsappUrl()}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-foreground/50 hover:text-foreground text-center transition-colors duration-fast"
-                >
-                  or chat with us on WhatsApp →
-                </a>
+                <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-foreground/50">
+                  <span>or reach us on</span>
+                  <a
+                    href={whatsappUrl()}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 hover:text-foreground transition-colors duration-fast"
+                  >
+                    <PiWhatsappLogo size={18} aria-hidden />
+                    WhatsApp
+                  </a>
+                  <a
+                    href={INSTAGRAM_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 hover:text-foreground transition-colors duration-fast"
+                  >
+                    <PiInstagramLogo size={18} aria-hidden />
+                    Instagram
+                  </a>
+                </div>
               </form>
             </FadeIn>
           </div>

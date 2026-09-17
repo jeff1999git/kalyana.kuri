@@ -17,3 +17,7 @@ export const WHATSAPP_PARTNER_MESSAGE =
 export function whatsappUrl(message: string = WHATSAPP_MESSAGE) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }
+
+export const INSTAGRAM_HANDLE = "kalyana.kuri";
+
+export const INSTAGRAM_URL = `https://www.instagram.com/${INSTAGRAM_HANDLE}`;
