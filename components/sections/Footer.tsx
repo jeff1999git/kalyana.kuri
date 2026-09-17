@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { SITE } from "@/lib/site";
+import { PiInstagramLogo } from "react-icons/pi";
+import { INSTAGRAM_HANDLE, INSTAGRAM_URL, SITE } from "@/lib/site";
 
 const footerLinks = [
   { label: "Work", href: "/#work" },
@@ -24,6 +25,16 @@ export function Footer() {
           <p className="text-xs text-foreground/40 mt-1 max-w-xs">
             {SITE.description}
           </p>
+          <a
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${SITE.name} on Instagram`}
+            className="inline-flex items-center gap-1.5 mt-2 text-xs text-foreground/40 hover:text-foreground/80 transition-colors duration-fast"
+          >
+            <PiInstagramLogo size={14} aria-hidden />
+            @{INSTAGRAM_HANDLE}
+          </a>
         </div>
 
         <nav className="flex flex-wrap items-center justify-center gap-1">

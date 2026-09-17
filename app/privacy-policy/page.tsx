@@ -21,7 +21,7 @@ export default function PrivacyPolicyPage() {
             <p>
               We collect information you provide directly to us, such as your name, email
               address, and WhatsApp number when you use our contact form or reach out to us
-              on WhatsApp. We also collect usage data automatically when you interact with
+              on WhatsApp or Instagram. We also collect usage data automatically when you interact with
               our website, including IP address, browser type, pages visited, and time spent.
             </p>
           </section>
@@ -57,7 +57,7 @@ export default function PrivacyPolicyPage() {
             <h2 className="text-base font-semibold text-foreground mb-2">5. Contact</h2>
             <p>
               If you have any questions about this Privacy Policy, please reach out to us
-              via the contact form or WhatsApp on our website.
+              via the contact form, WhatsApp or Instagram links on our website.
             </p>
           </section>
         </div>
