@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { CheersCursor } from "@/components/animations/CheersCursor";
 import { ClickBurst } from "@/components/animations/ClickBurst";
+import { BackgroundMusic } from "@/components/layout/BackgroundMusic";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -65,6 +66,7 @@ export default function RootLayout({
         {children}
         <CheersCursor />
         <ClickBurst />
+        <BackgroundMusic />
       </body>
     </html>
   );

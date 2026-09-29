@@ -9,6 +9,9 @@ const securityHeaders = [
 
 const nextConfig = {
   reactStrictMode: true,
+  // Keep the dev-only Next.js badge out of the bottom-left corner, where the
+  // site's background-music toggle lives.
+  devIndicators: { position: "bottom-right" },
   async headers() {
     return [
       {
